@@ -4,77 +4,89 @@ import java.io.Serializable;
 import java.util.List;
 
 public class PagingBean<T> implements Serializable {
-    private int pageNum;//页面传过来的 每页显示的数量
-    private int pageSize; //在后台初始化，也可以动态传递  总共有多少页
-    private int startIndex;//每页的起始索引号 计算出来的  开始的索引
-    private int totalPage;//依据页大小和总记录数计算出来的  总共有多少页
-    private int totalRecord;//查询出来的
-    private List <T> result;//结果
+    private String page;	//当前页
+    private int pageSize=0;	//分页数量
+    private int count=0;		//总数据数
+    private int allPage=0;	//总页数
+    private int pageIndex=0;//当前页
+    private int nextPage=0;	//下一页
+    private int prevPage=0;	//上一页
+    private int lastPage=0;	//尾页
+    private List<T> listProject;
 
-    //分页的滚动条
-    private int start=1;
-    private int end=10;
-
-    public PagingBean(int pageNum, int pageSize, int totalRecord,List <T> result) {
-        this.pageNum = pageNum;
+    public PagingBean(String page, int pageSize, int count) {
+        super();
+        this.page = page;
         this.pageSize = pageSize;
-        this.totalRecord = totalRecord;
-        this.result=result;
-        //计算startIndex
-        this.startIndex=(this.pageNum-1)*this.pageSize;
+        this.count = count;
+        initAllPage();	//初始化总页数
+        initPageIndex();//初始化当前页
+        initPrevPage();	//初始化上一页
+        initNextPage();	//初始化下一页
+        initEndPage();	//初始化尾页
+    }
 
-        //计算总页数
-        if(this.totalRecord%this.pageSize==0){
-            this.totalPage=this.totalRecord/this.pageSize;
+    private void initEndPage() {
+        lastPage = allPage;
+    }
+
+    private void initNextPage() {
+        //如果当前页是尾页，则下一页也为尾页，其余都为当前页+1
+        if(pageIndex>=allPage){
+            nextPage = allPage;
         }else{
-            this.totalPage=this.totalRecord/this.pageSize+1;
+            nextPage = pageIndex+1;
+        }
+    }
+
+    private void initPrevPage() {
+        //如果当前页为1，则上一页也为1，其余都为当前页-1
+        if(pageIndex>1){
+            prevPage = pageIndex-1;
+        }else{
+            prevPage = 1;
+        }
+    }
+
+    private void initPageIndex() {
+        if(page!=null&&page.equals("")){
+            pageIndex = Integer.parseInt(page);
+        }else{
+            pageIndex = 1;
+            pageIndex = Integer.parseInt(page);
+        }
+    }
+
+    private void initAllPage() {
+        if(count%pageSize==0){
+            allPage = count/pageSize;
+        }else{
+            allPage = count/pageSize+1;
         }
 
-        //计算滚动条
-        //计算总页数小于10 ，
+    }
 
-        if(this.totalPage<=10){
-            this.end=this.totalPage;
-        }else{
-
-            //35页
-            this.start=this.pageNum-5;
-            this.end=this.pageNum+4;
-
-            if(this.start<1){
-                this.end=10;
-                this.start=1;
-            }
-            if(this.end>this.totalPage){
-                this.end=this.totalPage;
-                this.start=this.totalPage-9;
-            }
-        }
+    public PagingBean(String page, int pageSize, int count, int allPage, int pageIndex, int nextPage, int prevPage, int lastPage, List <T> listProject) {
+        this.page = page;
+        this.pageSize = pageSize;
+        this.count = count;
+        this.allPage = allPage;
+        this.pageIndex = pageIndex;
+        this.nextPage = nextPage;
+        this.prevPage = prevPage;
+        this.lastPage = lastPage;
+        this.listProject = listProject;
     }
 
     public PagingBean() {
     }
 
-    @Override
-    public String toString() {
-        return "PagingBean{" +
-                "pageNum=" + pageNum +
-                ", pageSize=" + pageSize +
-                ", startIndex=" + startIndex +
-                ", totalPage=" + totalPage +
-                ", totalRecord=" + totalRecord +
-                ", result=" + result +
-                ", start=" + start +
-                ", end=" + end +
-                '}';
+    public String getPage() {
+        return page;
     }
 
-    public int getPageNum() {
-        return pageNum;
-    }
-
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
+    public void setPage(String page) {
+        this.page = page;
     }
 
     public int getPageSize() {
@@ -85,51 +97,74 @@ public class PagingBean<T> implements Serializable {
         this.pageSize = pageSize;
     }
 
-    public int getStartIndex() {
-        return startIndex;
+    public int getCount() {
+        return count;
     }
 
-    public void setStartIndex(int startIndex) {
-        this.startIndex = startIndex;
+    public void setCount(int count) {
+        this.count = count;
     }
 
-    public int getTotalPage() {
-        return totalPage;
+    public int getAllPage() {
+        return allPage;
     }
 
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
+    public void setAllPage(int allPage) {
+        this.allPage = allPage;
     }
 
-    public int getTotalRecord() {
-        return totalRecord;
+    public int getPageIndex() {
+        return pageIndex;
     }
 
-    public void setTotalRecord(int totalRecord) {
-        this.totalRecord = totalRecord;
+    public void setPageIndex(int pageIndex) {
+        this.pageIndex = pageIndex;
     }
 
-    public List <T> getResult() {
-        return result;
+    public int getNextPage() {
+        return nextPage;
     }
 
-    public void setResult(List <T> result) {
-        this.result = result;
+    public void setNextPage(int nextPage) {
+        this.nextPage = nextPage;
     }
 
-    public int getStart() {
-        return start;
+    public int getPrevPage() {
+        return prevPage;
     }
 
-    public void setStart(int start) {
-        this.start = start;
+    public void setPrevPage(int prevPage) {
+        this.prevPage = prevPage;
     }
 
-    public int getEnd() {
-        return end;
+    public int getLastPage() {
+        return lastPage;
     }
 
-    public void setEnd(int end) {
-        this.end = end;
+    public void setLastPage(int lastPage) {
+        this.lastPage = lastPage;
+    }
+
+    public List <T> getListProject() {
+        return listProject;
+    }
+
+    public void setListProject(List <T> listProject) {
+        this.listProject = listProject;
+    }
+
+    @Override
+    public String toString() {
+        return "PagingBean{" +
+                "page='" + page + '\'' +
+                ", pageSize=" + pageSize +
+                ", count=" + count +
+                ", allPage=" + allPage +
+                ", pageIndex=" + pageIndex +
+                ", nextPage=" + nextPage +
+                ", prevPage=" + prevPage +
+                ", lastPage=" + lastPage +
+                ", listProject=" + listProject +
+                '}';
     }
 }

@@ -47,7 +47,6 @@
 <div class="loginbody">
 
     <span class="systemlogo"></span>
-
     <div class="loginbox loginbox2">
 
         <form action="loginServlet" method="post" id="fm">

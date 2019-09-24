@@ -58,7 +58,7 @@
     </ul>
 
     <div class="ibox"><a class="ibtn"><img src="../images/iadd.png" />添加新的快捷功能</a></div>
-
+    
     <div class="xline"></div>
     <div class="box"></div>
 

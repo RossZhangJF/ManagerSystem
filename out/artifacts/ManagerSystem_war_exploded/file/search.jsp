@@ -189,7 +189,8 @@
         <div class="formtitle"><span>项目列表</span></div>
         <script>
             $(document).ready(function(){
-                window.location.href="totalPageServlet";
+
+
             });
         </script>
         <table class="tablelist">

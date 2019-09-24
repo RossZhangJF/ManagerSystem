@@ -58,7 +58,7 @@
     </ul>
 
     <div class="ibox"><a class="ibtn"><img src="../images/iadd.png" />添加新的快捷功能</a></div>
-
+    <h1><a href="test2.jsp">分页实现功能测试</a></h1>
     <div class="xline"></div>
     <div class="box"></div>
 

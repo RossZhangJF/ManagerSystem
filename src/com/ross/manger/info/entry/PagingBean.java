@@ -14,8 +14,9 @@ public class PagingBean<T> implements Serializable {
     private int lastPage=0;	//尾页
     private List<T> listProject;
 
-    public PagingBean(String page, int pageSize, int count) {
+    public PagingBean(List <T> listProject, String page, int pageSize, int count) {
         super();
+        this.listProject=listProject;
         this.page = page;
         this.pageSize = pageSize;
         this.count = count;

@@ -37,14 +37,13 @@ public class TotalPageServlet extends HttpServlet {
         String jsonString=jsonArray.toString();//将jisn转换为字符串
 
         //总记录数
-        int totalRecord=proService.findTotalRecordService();
+        int count=proService.findTotalRecordService();
 //        System.out.println(totalRecord);
-        PagingBean<Project> pagingBean=new PagingBean <>();   //分页POJO
+        PagingBean<Project> pagingBean=new PagingBean <Project>(project,"1",6,count);   //分页POJO
+
         if (project != null){
             request.setAttribute("project",project);
             response.getWriter().print(jsonString);//返回json信息
-//            jsonObject.element("jsonArray",jsonArray);
-//            System.out.println(jsonObject.getJSONObject("jsonArray"));
             request.getRequestDispatcher("search.jsp").forward(request,response);
         }else {
             request.getRequestDispatcher("error.html").forward(request,response);

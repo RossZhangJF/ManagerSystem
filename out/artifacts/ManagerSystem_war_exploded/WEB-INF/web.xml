@@ -39,4 +39,12 @@
         <filter-name>LoginCheckedHttpFilter</filter-name>
         <url-pattern>/file/loginServlet</url-pattern>
     </filter-mapping>
+    <filter>
+        <filter-name>LoginAutoFilter</filter-name>
+        <filter-class>com.ross.manger.info.filter.LoginAutoFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginAutoFilter</filter-name>
+        <url-pattern>/file/*</url-pattern>
+    </filter-mapping>
 </web-app>

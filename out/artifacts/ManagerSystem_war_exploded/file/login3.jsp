@@ -53,11 +53,11 @@
             <ul>
                 <li>
                     <p id="uNameMessage">${requestScope.message}</p>
-                    <input id="uName" onfa name="username" type="text" value="201301003" class="loginuser" placeholder="输入学号或身份证号"/>
+                    <input id="uName" onfa name="username" type="text"  class="loginuser" placeholder="输入学号或身份证号"/>
                 </li>
                 <li>
                     <p id="uPwdMessage"></p>
-                    <input id="uPwd" name="password" type="password" value="123456" class="loginpwd" placeholder="输入密码"/>
+                    <input id="uPwd" name="password" type="password"  class="loginpwd" placeholder="输入密码"/>
                 </li>
                 <li class="yzm">
                     <p id="codeMessage"></p>
@@ -66,7 +66,7 @@
                 </li>
                 <li>
                     <input name="" type="submit" class="loginbtn" value="登录" onclick="clear()"/>
-                    <label><input name="isPwd" type="checkbox" value="" checked="checked" />记住密码</label>
+                    <label><input name="isPwd" type="checkbox" value=""  />记住密码</label>
                     <label><a href="#">忘记密码？</a></label></li>
             </ul>
         </form>

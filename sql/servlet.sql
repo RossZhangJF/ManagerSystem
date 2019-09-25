@@ -1,3 +1,6 @@
+create database servlet;
+use servlet;
+
 select stu_id stuId,stu_no stuNo,stu_name stuName,stu_sex stuSex,
        stu_age stuAge,stu_phone stuPhone,stu_idcard stuIdCard,
        stu_email stuEmail,stu_addr stuAddr,stu_grade stuGrade,

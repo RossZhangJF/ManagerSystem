@@ -22,12 +22,12 @@ public class TotalPageServlet extends HttpServlet {
         //取得jsp页码传进来的当前页码
         int d=0;
         String dang=request.getParameter("dangPage");
-        System.out.println(dang+"dangqang");
+        System.out.println(dang+"newPage");
 
         if (dang != null) {
             d=Integer.parseInt(dang);
         }
-        Page page= PageService.paging(d,12);
+        Page page= PageService.paging(d,10);
         if (page!=null){
             System.out.println("page:"+page);
             request.setAttribute("pageList", page);

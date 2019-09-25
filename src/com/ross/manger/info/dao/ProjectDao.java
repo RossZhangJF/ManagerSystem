@@ -34,6 +34,20 @@ public interface ProjectDao {
     public List <Project> getProjectAllDataPaging( int pageNum, int pageSize) ;
 
     /**
+     *  根据用户输入的字符。模糊查询Project表。显示在页面上
+     * @param proName
+     * @return
+     */
+    public List<Project> getProjectLikeProName(String proName ,Integer proState);
+
+    /**
+     * 模糊查询的所有的数据
+     * @param proName
+     * @return
+     */
+    public List<Project> getProjectLikeAll(String proName );
+
+    /**
      * 计算每页的起始位置
      * @return 返回起始位置
      */

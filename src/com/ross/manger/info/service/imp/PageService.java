@@ -22,19 +22,21 @@ public final class PageService {
         //设置下一页
         page.setNext(pageNow+1);
 
-        //从数据库中得到所有的数据记录总数
+        //从数据库中得到所有的数据,总共有多少条
         int totalNum = getTotalNum();
         //设置总记录数
         page.setTotalNum(totalNum);
 
         int totalPage=0;
-        if(totalNum % pageSize == 0){
+        System.out.println("388%12 ===="+(totalNum % pageSize));
+        if( totalNum % pageSize == 0){
             //设置总页数
             totalPage = totalNum / pageSize;
         }else{
             //设置总页数
             totalPage = totalNum / pageSize + 1;
         }
+        System.out.println("设置总页数："+totalPage);
         //设置最后一页
         page.setLast( totalPage);
         page.setTotalPage(totalPage);
@@ -52,7 +54,7 @@ public final class PageService {
         page.setPageNow(pageNow);
 
 
-        if(pageNow < 3){
+        if(pageNow < 2){
             //开始的位置
             page.setBegin(page.getFirst());
             //结束的位置
@@ -67,9 +69,10 @@ public final class PageService {
             page.setEnd(page.getLast());
         }
 
-
-        //查询当前页的数据并设置
+        System.out.println("pageNow---->>>"+pageNow+"pageSize===<<<"+pageSize);
+//        查询当前页的数据并设置
         List data = findByPage( pageNow, pageSize);
+        System.out.println(data);
         page.setData(data);
         //放回结果
         return page;
@@ -77,7 +80,7 @@ public final class PageService {
 
     /**获取总记录数*/
     private static int getTotalNum() {
-//        System.out.println(proService.getAllRecordService()+"4664");
+        System.out.println(proService.getAllRecordService()+"数据库中的总记录数");
         return proService.getAllRecordService();
     }
 

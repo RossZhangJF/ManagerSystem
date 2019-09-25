@@ -30,6 +30,16 @@ public class ProjectServiceImp implements ProjectService {
     }
 
     @Override
+    public List <Project> getProjectLikeProNameService(String proName, Integer proState) {
+        return proDao.getProjectLikeProName(proName,proState);
+    }
+
+    @Override
+    public List <Project> getProjectLikeAllService(String proName) {
+        return proDao.getProjectLikeAll(proName);
+    }
+
+    @Override
     public int getAllRecordService() {
         return proDao.getAllRecord();
     }

@@ -9,5 +9,7 @@ public interface ProjectService {
     public List<Project> getProjectByIdService(Integer stuId);
     public List <Project> getProjectByStuIdDataPagingService(Integer stuId,int pageNum, int pageSize) ;
     public List <Project> getProjectAllDataPagingService(int pageNum, int pageSize) ;
+    public List<Project> getProjectLikeProNameService(String proName ,Integer proState);
+    public List<Project> getProjectLikeAllService(String proName );
     public int getAllRecordService() ;
 }

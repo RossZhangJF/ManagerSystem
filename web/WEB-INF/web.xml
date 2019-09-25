@@ -21,6 +21,14 @@
         <servlet-name>totalPageServlet</servlet-name>
         <url-pattern>/file/totalPageServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>QueryProjectServlet</servlet-name>
+        <servlet-class>com.ross.manger.info.servlet.QueryProjectServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>QueryProjectServlet</servlet-name>
+        <url-pattern>/file/queryProject</url-pattern>
+    </servlet-mapping>
 
 
     <filter>

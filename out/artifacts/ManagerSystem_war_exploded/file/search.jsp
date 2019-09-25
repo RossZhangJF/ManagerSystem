@@ -7,8 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html >
+<html >
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>无标题文档</title>
@@ -129,74 +129,76 @@
     <div id="usual1" class="usual">
 
 
+        <form action="queryProject" method="post">
+            <ul class="seachform1">
 
-        <ul class="seachform1">
+                <li><label>项目名称</label><input name="proName" type="text" class="scinput1" /></li>
+                <li><label>申请人</label>
+                    <div class="vocation">
+                        <select name="proposerName" class="select3">
+                            <option value="1">全部</option>
+                            <option value="2">其他</option>
+                        </select>
+                    </div>
+                </li>
 
-            <li><label>项目名称</label><input name="" type="text" class="scinput1" /></li>
-            <li><label>学校名称</label>
-                <div class="vocation">
-                    <select class="select3">
-                        <option>全部</option>
-                        <option>其他</option>
-                    </select>
-                </div>
-            </li>
-
-            <li><label>项目状态</label>
-                <div class="vocation">
-                    <select class="select3">
-                        <option>全部</option>
-                        <option>其他</option>
-                    </select>
-                </div>
-            </li>
-
-
-        </ul>
-
-        <ul class="seachform2">
-
-            <li><label>项目编号</label><input name="" type="text" class="scinput1" /></li>
-            <li><label>项目类型</label>
-                <div class="vocation">
-                    <select class="select3">
-                        <option>全部</option>
-                        <option>其他</option>
-                    </select>
-                </div>
-            </li>
-
-            <li><label>项目领域</label>
-                <div class="vocation">
-                    <select class="select3">
-                        <option>全部</option>
-                        <option>其他</option>
-                    </select>
-                </div>
-            </li>
-
-            <li><label>立项部门</label><input name="" type="text" class="scinput1" /></li>
-            <li><label>经费范围</label><input name="" type="text" class="scinput1" /></li>
-            <li><label>一</label><input name="" type="text" class="scinput1" /></li>
-            <li><label>负责人</label><input name="" type="text" class="scinput1" /></li>
-            <li><label>立项时间</label><input name="" type="text" class="scinput1" /></li>
-            <li><label>一</label><input name="" type="text" class="scinput1" /></li>
+                <li><label>项目状态</label>
+                    <div class="vocation">
+                        <select name="proState" class="select3">
+                            <option value="1">全部</option>
+                            <option value="2">已审核</option>
+                            <option value="3">已结项</option>
+                            <option value="4">未审核</option>
+                        </select>
+                    </div>
+                </li>
 
 
-        </ul>
+            </ul>
+<%--
+            <ul class="seachform2">
 
-        <ul class="seachform1">
-            <li class="sarchbtn"><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询"/>   <input name="" type="button" class="scbtn1" value="更多条件"/>   <input name="" type="button" class="scbtn2" value="导出"/></li>
-        </ul>
+                <li><label>项目编号</label><input name="proId" type="text" class="scinput1" /></li>
+                <li><label>项目类型</label>
+                    <div class="vocation">
+                        <select name="proType" class="select3">
+                            <option value="1">全部</option>
+                            <option value="2">其他</option>
+                        </select>
+                    </div>
+                </li>
 
+                <li><label>项目领域</label>
+                    <div class="vocation">
+                        <select name="proField" class="select3">
+                            <option value="1">全部</option>
+                            <option value="2">其他</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li><label>立项部门</label><input name="proDepartment" type="text" class="scinput1" /></li>
+                <li><label>经费范围</label><input name="proExpenditure" type="text" class="scinput1" /></li>
+                <li><label>一</label><input name="" type="text" class="scinput1" /></li>
+                <li><label>负责人</label><input name="" type="text" class="scinput1" /></li>
+                <li><label>立项时间</label><input name="" type="text" class="scinput1" /></li>
+                <li><label>一</label><input name="" type="text" class="scinput1" /></li>
+
+
+            </ul>
+--%>
+            <ul class="seachform1">
+                <li class="sarchbtn"><label>&nbsp;</label><input name="" type="submit" class="scbtn" value="查询"/>   <input name="" type="button" class="scbtn1" value="更多条件"/>   <input name="" type="button" class="scbtn2" value="导出"/></li>
+            </ul>
+        </form>
         <div class="formtitle"><span>项目列表</span></div>
         <table class="tablelist">
             <thead>
             <tr>
                 <th><input name="" type="checkbox" value="" checked="checked"/></th>
                 <th>编号<i class="sort"><img src="../images/px.gif" /></i></th>
-                <th>标题</th>
-                <th>用户</th>
+                <th>项目名称</th>
+                <th>申请人</th>
                 <th>发布时间</th>
                 <th>是否审核</th>
                 <th>操作</th>
@@ -218,20 +220,20 @@
             </tbody>
         </table>
         <div class="pagin">
-            <div class="message">现在是${pageList.dangPage}/${pageList.pageSize}页</div>
+            <div class="message">现在是${pageList.pageNow}/${pageList.totalPage}页</div>
             <ul class="paginList">
                 <li class="paginItem"><a href="totalPageServlet?dangPage=1"><span class="pagepre">首页</span></a></li>
                 <li class="paginItem">
-                    <c:if test="${pageList.dangPage>1}">
-                        <a href="totalPageServlet?dangPage=${pageList.dangPage-1}">上一页</a>
+                    <c:if test="${pageList.pageNow>1}">
+                        <a href="totalPageServlet?dangPage=${pageList.pageNow-1}">上一页</a>
                     </c:if>
                 </li>
                 <li class="paginItem">
-                    <c:if test="${pageList.dangPage < pageList.pageSize}">
-                        <a href="totalPageServlet?dangPage=${pageList.dangPage+1}">下一页</a>
+                    <c:if test="${pageList.pageNow < pageList.pageSize}">
+                        <a href="totalPageServlet?dangPage=${pageList.pageNow+1}">下一页</a>
                     </c:if>
                 </li>
-                <li class="paginItem"><a href="totalPageServlet?dangPage=${pageList.pageSize }"> <span class="pagenxt">末页 </span></a></li>
+                <li class="paginItem"><a href="totalPageServlet?dangPage=${pageList.totalPage }"> <span class="pagenxt">末页 </span></a></li>
             </ul>
         </div>
     </div>

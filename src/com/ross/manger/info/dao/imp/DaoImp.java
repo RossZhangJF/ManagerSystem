@@ -57,10 +57,23 @@ public class DaoImp<T> implements Dao<T> {
     }
 
     @Override
-    public int getTotal(String sql, Object... id) {
+    public int getTotal(String sql, Object ... id) {
         Long total=0L;
         try {
            total =  queryRunner.query(connection,sql,new ScalarHandler <>(),id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (total != 0L)
+            return total.intValue();
+        return 0;
+    }
+
+    @Override
+    public int getAllDataCount(String sql) {
+        Long total=0L;
+        try {
+            total =  queryRunner.query(connection,sql,new ScalarHandler <>());
         } catch (SQLException e) {
             e.printStackTrace();
         }

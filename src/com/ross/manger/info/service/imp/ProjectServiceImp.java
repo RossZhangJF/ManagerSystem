@@ -20,12 +20,23 @@ public class ProjectServiceImp implements ProjectService {
     }
 
     @Override
-    public List <Project> findUserBySimplePageService(Integer stuId, int pageNum, int pageSize) {
-        return proDao.findUserBySimplePage(stuId,pageNum,pageSize);
+    public List <Project> getProjectByStuIdDataPagingService(Integer stuId, int pageNum, int pageSize) {
+        return proDao.getProjectByStuIdDataPaging(stuId,pageNum,pageSize);
     }
 
     @Override
-    public int findTotalRecordService() {
-        return proDao.findTotalRecord();
+    public List <Project> getProjectAllDataPagingService(int pageNum, int pageSize) {
+        return proDao.getProjectAllDataPaging(pageNum,pageSize);
     }
+
+    @Override
+    public int getAllRecordService() {
+        return proDao.getAllRecord();
+    }
+
+    /*public static void main(String[] args) {
+        ProjectServiceImp p=new ProjectServiceImp();
+        int a=p.getAllRecordService();
+        System.out.println(a);
+    }*/
 }

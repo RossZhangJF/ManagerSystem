@@ -28,7 +28,7 @@ public class ProjectDaoImp extends DaoImp<Project> implements ProjectDao {
     }
 
     @Override
-    public List <Project> findUserBySimplePage(Integer stuId, int pageNum, int pageSize) {
+    public List <Project> getProjectByStuIdDataPaging(Integer stuId, int pageNum, int pageSize) {
         String sql=" select pro_id proId,pro_name proName,stu_name proPerson,pro_state proState,pro_date proDate " +
                 " from project pro inner join student stu on pro.pro_person = stu.stu_id " +
                 " where pro.pro_person = ? limit ?,? ; ";
@@ -39,9 +39,20 @@ public class ProjectDaoImp extends DaoImp<Project> implements ProjectDao {
     }
 
     @Override
-    public int findTotalRecord() {
-        String sql="select  count(*)  from project where pro_person = ? GROUP BY pro_person ;";
-        int total=getTotal(sql,3);
+    public List <Project> getProjectAllDataPaging(int pageNum, int pageSize) {
+        String sql=" select pro_id proId,pro_name proName,stu_name proPerson,pro_state proState,pro_date proDate " +
+                " from project pro inner join student stu on pro.pro_person = stu.stu_id " +
+                "  limit ?,? ; ";
+        List<Project> list=getAll(Project.class,sql,pageNum,pageSize);
+        if (list!=null)
+            return list;
+        return null;
+    }
+
+    @Override
+    public int getAllRecord() {
+        String sql="select  count(*)  from project ;";
+        int total=getAllDataCount(sql);
         if (total != 0)
             return total;
         return 0;
@@ -49,7 +60,7 @@ public class ProjectDaoImp extends DaoImp<Project> implements ProjectDao {
 
     /*public static void main(String[] args) {
         ProjectDaoImp p=new ProjectDaoImp();
-        int num=p.findTotalRecord();
+        int num=p.getAllRecord();
         System.out.println(num);
     }*/
 }

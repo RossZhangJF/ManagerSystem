@@ -7,4 +7,5 @@ public interface Dao<T> {
     public boolean update(String sql,Object ...objs);
     public List <T> getAll(Class<T> clazz, String sql, Object ...objs);
     public int getTotal(String sql,Object ... id) ;
+    public int getAllDataCount(String sql) ;
 }

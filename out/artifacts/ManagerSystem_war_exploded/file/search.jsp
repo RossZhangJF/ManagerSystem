@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: PC_01
@@ -7,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -121,7 +121,10 @@
 </div>
 
 <div class="formbody">
-
+<%--    ${pageList}--%>
+    <c:if test="${ pageList == null }">
+        <% response.sendRedirect("totalPageServlet"); %>
+    </c:if>
 
     <div id="usual1" class="usual">
 
@@ -187,12 +190,6 @@
         </ul>
 
         <div class="formtitle"><span>项目列表</span></div>
-        <script>
-            $(document).ready(function(){
-
-
-            });
-        </script>
         <table class="tablelist">
             <thead>
             <tr>
@@ -207,7 +204,7 @@
             </thead>
             <tbody >
 
-                <c:forEach items="${project }" var="result" >
+                <c:forEach items="${pageList.data }" var="result" >
                     <tr id="tbody">
                         <td><input name="" type="checkbox" value="" /></td>
                         <td>${result.proID}</td>
@@ -221,14 +218,20 @@
             </tbody>
         </table>
         <div class="pagin">
-
-            <div class="message">共<i class="blue"></i>条记录，当前显示第&nbsp;<i class="blue">6&nbsp;</i>页</div>
+            <div class="message">现在是${pageList.dangPage}/${pageList.pageSize}页</div>
             <ul class="paginList">
-                <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
-                <li class="paginItem">1</li>
-                <li class="paginItem">2</li>
-                <li class="paginItem">3</li>
-                <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
+                <li class="paginItem"><a href="totalPageServlet?dangPage=1"><span class="pagepre">首页</span></a></li>
+                <li class="paginItem">
+                    <c:if test="${pageList.dangPage>1}">
+                        <a href="totalPageServlet?dangPage=${pageList.dangPage-1}">上一页</a>
+                    </c:if>
+                </li>
+                <li class="paginItem">
+                    <c:if test="${pageList.dangPage < pageList.pageSize}">
+                        <a href="totalPageServlet?dangPage=${pageList.dangPage+1}">下一页</a>
+                    </c:if>
+                </li>
+                <li class="paginItem"><a href="totalPageServlet?dangPage=${pageList.pageSize }"> <span class="pagenxt">末页 </span></a></li>
             </ul>
         </div>
     </div>

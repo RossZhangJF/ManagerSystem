@@ -23,11 +23,19 @@ public interface ProjectDao {
      * @param pageSize 记录行的最大数目。
      * @return 返回一个project的List集合
      */
-    public List <Project> findUserBySimplePage(Integer stuId, int pageNum, int pageSize) ;
+    public List <Project> getProjectByStuIdDataPaging(Integer stuId, int pageNum, int pageSize) ;
+
+    /**
+     * 从数据库中查询所有的数据，进行分页
+     * @param pageNum 拿到的当前页数
+     * @param pageSize 每页的记录数
+     * @return
+     */
+    public List <Project> getProjectAllDataPaging( int pageNum, int pageSize) ;
 
     /**
      * 计算每页的起始位置
      * @return 返回起始位置
      */
-    public int findTotalRecord() ;
+    public int getAllRecord() ;
 }

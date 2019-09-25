@@ -21,15 +21,7 @@
         <servlet-name>totalPageServlet</servlet-name>
         <url-pattern>/file/totalPageServlet</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>PageServlet</servlet-name>
-        <servlet-class>com.ross.manger.info.servlet.PageServlet</servlet-class>
-    </servlet>
 
-    <servlet-mapping>
-        <servlet-name>PageServlet</servlet-name>
-        <url-pattern>/file/PageServlet</url-pattern>
-    </servlet-mapping>
 
     <filter>
         <filter-name>EncodingFilter</filter-name>

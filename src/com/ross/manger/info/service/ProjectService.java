@@ -7,6 +7,7 @@ import java.util.List;
 public interface ProjectService {
     public List <Project> getProjectAllService();
     public List<Project> getProjectByIdService(Integer stuId);
-    public List <Project> findUserBySimplePageService(Integer stuId,int pageNum, int pageSize) ;
-    public int findTotalRecordService() ;
+    public List <Project> getProjectByStuIdDataPagingService(Integer stuId,int pageNum, int pageSize) ;
+    public List <Project> getProjectAllDataPagingService(int pageNum, int pageSize) ;
+    public int getAllRecordService() ;
 }

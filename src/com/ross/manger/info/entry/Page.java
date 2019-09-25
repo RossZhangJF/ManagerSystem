@@ -2,77 +2,141 @@ package com.ross.manger.info.entry;
 
 import java.util.List;
 
-public class Page {
-    //数据库里的总条数
-    private int pageSum;
-    //分页时的总页数，按照数据库里的数据，分总共分多少页
+/**
+ * 这是一个分页的的工具
+ */
+public class Page<T> {
+    /**当前页*/
+    private int pageNow;
+    /**每页记录数*/
     private int pageSize;
-    //当前页码
-    private int dangPage;
-    //分页后每页显示的条数
-    private int pageTiao=3;
-    //分页后每
-    private List <Project> getPageList;
+
+    /**首页*/
+    private int first = 1;
+    /**上一页*/
+    private int prev;
+    /**下一页*/
+    private int next;
+    /**最后一页*/
+    private int last;
+    /**总记录数*/
+    private int totalNum;
+    /**总页数*/
+    private int totalPage;
+
+    /**开始显示的位置*/
+    private int begin;
+    /**结束显示的位置*/
+    private int end;
+
+    /**当前页面要显示的数据*/
+    private List<T> data;
 
     public Page() {
     }
 
-    public Page(int pageSum, int pageSize, int dangPage, int pageTiao, List <Project> getPageList) {
-        this.pageSum = pageSum;
-        this.pageSize = pageSize;
-        this.dangPage = dangPage;
-        this.pageTiao = pageTiao;
-        this.getPageList = getPageList;
+    public int getPageNow() {
+        return pageNow;
     }
 
-    public int getPageSum() {
-        return pageSum;
-    }
-
-    public void setPageSum(int pageSum) {
-        this.pageSum = pageSum;
+    public void setPageNow(int pageNow) {
+        this.pageNow = pageNow;
     }
 
     public int getPageSize() {
-        return this.pageSize=(pageSum % pageTiao==0)?(pageSum/pageSize):((pageSum/pageTiao)+1);
+        return pageSize;
     }
 
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
     }
 
-    public int getDangPage() {
-        return dangPage;
+    public int getFirst() {
+        return first;
     }
 
-    public void setDangPage(int dangPage) {
-        this.dangPage = dangPage;
+    public void setFirst(int first) {
+        this.first = first;
     }
 
-    public int getPageTiao() {
-        return pageTiao;
+    public int getPrev() {
+        return prev;
     }
 
-    public void setPageTiao(int pageTiao) {
-        this.pageTiao = pageTiao;
+    public void setPrev(int prev) {
+        this.prev = prev;
     }
 
-    public List <Project> getGetPageList() {
-        return getPageList;
+    public int getNext() {
+        return next;
     }
 
-    public void setGetPageList(List <Project> getPageList) {
-        this.getPageList = getPageList;
+    public void setNext(int next) {
+        this.next = next;
+    }
+
+    public int getLast() {
+        return last;
+    }
+
+    public void setLast(int last) {
+        this.last = last;
+    }
+
+    public int getTotalNum() {
+        return totalNum;
+    }
+
+    public void setTotalNum(int totalNum) {
+        this.totalNum = totalNum;
+    }
+
+    public int getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    public int getBegin() {
+        return begin;
+    }
+
+    public void setBegin(int begin) {
+        this.begin = begin;
+    }
+
+    public int getEnd() {
+        return end;
+    }
+
+    public void setEnd(int end) {
+        this.end = end;
+    }
+
+    public List <T> getData() {
+        return data;
+    }
+
+    public void setData(List <T> data) {
+        this.data = data;
     }
 
     @Override
     public String toString() {
         return "Page{" +
-                "pageSum=" + pageSum +
+                "pageNow=" + pageNow +
                 ", pageSize=" + pageSize +
-                ", dangPage=" + dangPage +
-                ", pageTiao=" + pageTiao +
-                ", getPageList=" + getPageList +
+                ", first=" + first +
+                ", prev=" + prev +
+                ", next=" + next +
+                ", last=" + last +
+                ", totalNum=" + totalNum +
+                ", totalPage=" + totalPage +
+                ", begin=" + begin +
+                ", end=" + end +
+                ", data=" + data +
                 '}';
     }
 }
